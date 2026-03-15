@@ -3,578 +3,623 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cornerman Consulting</title>
+<title>Jenna Duffus | Psychologist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #16161C;
-    --bg-card:   #19191F;
-    --bg-raised: #1E1E26;
-    --lime:      #EBFE46;
+    --cream:     #FAF8F2;
+    --warm:      #F3EFE7;
+    --sand:      #E8E2D6;
+    --taupe:     #9B8F7F;
+    --stone:     #6B5F53;
+    --charcoal:  #3A3430;
+    --deep:      #2A2522;
+    --sage:      #7A8B6F;
+    --sage-soft: #E8EDE4;
+    --sage-mid:  #A8B89E;
     --white:     #FFFFFF;
-    --muted:     #737373;
-    --border:    rgba(255,255,255,0.07);
   }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+
   body {
-    background: var(--bg); color: var(--white);
-    font-family: 'Manrope', sans-serif; font-weight: 400;
-    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.7;
   }
-  .cursor {
-    position: fixed; width: 10px; height: 10px;
-    background: var(--lime); border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.12s ease;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    position: fixed; width: 36px; height: 36px;
-    border: 1.5px solid rgba(235,254,70,0.4); border-radius: 50%;
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, border-color 0.3s;
-  }
+
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 28px 56px;
-    background: linear-gradient(to bottom, rgba(22,22,28,0.97) 0%, transparent 100%);
+    padding: 24px 60px;
+    background: rgba(250,248,242,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(155,143,127,0.1);
+    transition: padding 0.3s;
   }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo-mark {
-    width: 26px; height: 26px; background: var(--lime);
-    display: flex; align-items: center; justify-content: center;
+  nav.scrolled { padding: 16px 60px; }
+
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 22px;
+    color: var(--charcoal);
+    text-decoration: none; letter-spacing: 0.01em;
   }
-  .nav-logo-text {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-weight: 600; font-size: 14px; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--white);
-  }
-  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
   .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
-    transition: color 0.2s;
+    color: var(--stone); text-decoration: none;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--charcoal); }
   .nav-cta {
-    background: var(--lime) !important; color: var(--bg) !important;
-    padding: 10px 22px; font-weight: 700 !important;
-    letter-spacing: 0.08em !important;
+    background: var(--sage) !important; color: var(--white) !important;
+    padding: 10px 24px !important; letter-spacing: 0.08em !important;
     transition: background 0.2s !important;
   }
-  .nav-cta:hover { background: #f3ff60 !important; }
+  .nav-cta:hover { background: var(--stone) !important; }
 
-  /* HERO */
+  .mobile-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 28px; height: 20px; position: relative; z-index: 101;
+  }
+  .mobile-toggle span {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--charcoal); transition: 0.3s;
+    position: absolute; left: 0;
+  }
+  .mobile-toggle span:nth-child(1) { top: 0; }
+  .mobile-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .mobile-toggle span:nth-child(3) { bottom: 0; }
+  .mobile-toggle.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+  .mobile-toggle.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+  /* ── HERO ── */
   .hero {
-    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-    position: relative; overflow: hidden;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 160px 24px 120px;
+    position: relative;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
   }
-  .hero::after {
-    content: ''; position: absolute; top: 0; right: 0;
-    width: 340px; height: 340px;
-    background: linear-gradient(225deg, rgba(235,254,70,0.07) 0%, transparent 65%);
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
-    z-index: 0;
-  }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 160px 56px 88px; position: relative; z-index: 2;
-  }
+  .hero-content { max-width: 720px; }
   .hero-eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--lime);
-    margin-bottom: 28px; display: flex; align-items: center; gap: 14px;
-    opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
   }
-  .hero-eyebrow::before { content: ''; width: 36px; height: 1.5px; background: var(--lime); }
-  .hero-title {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-weight: 600; font-size: clamp(64px, 7.5vw, 110px);
-    line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 36px;
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.15; letter-spacing: -0.01em;
+    color: var(--charcoal); margin-bottom: 32px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.35s;
   }
-  .hero-title em {
-    font-family: 'Hedvig Letters Serif', serif;
-    font-style: italic; color: var(--lime); font-weight: 400; letter-spacing: 0;
+  .hero h1 em {
+    font-style: italic; color: var(--sage); font-weight: 400;
   }
   .hero-desc {
-    font-size: 16px; font-weight: 400; line-height: 1.75;
-    color: var(--muted); max-width: 400px; margin-bottom: 52px;
+    font-size: 17px; line-height: 1.8; color: var(--stone);
+    max-width: 540px; margin: 0 auto 48px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
   }
   .hero-btn {
-    display: inline-flex; align-items: center; gap: 14px;
-    background: var(--lime); color: var(--bg);
-    padding: 15px 30px; font-family: 'Manrope', sans-serif;
-    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none; width: fit-content;
-    transition: background 0.2s, transform 0.2s;
+    display: inline-block; background: var(--sage); color: var(--white);
+    padding: 16px 40px; font-family: 'Lato', sans-serif;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s;
   }
-  .hero-btn:hover { background: #f3ff60; transform: translateX(4px); }
-  .hero-btn svg { transition: transform 0.2s; }
-  .hero-btn:hover svg { transform: translateX(4px); }
-  .hero-right { position: relative; z-index: 1; overflow: hidden; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
-  .hero-shapes { position: absolute; inset: 0; }
-  .shape { position: absolute; }
-  .shape-1 {
-    width: 420px; height: 420px; top: 8%; left: 10%;
-    background: rgba(235,254,70,0.025);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    transform: rotate(-25deg);
+  .hero-btn:hover { background: var(--stone); transform: translateY(-1px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    opacity: 0; animation: fadeIn 1s ease forwards 1.2s;
   }
-  .shape-2 {
-    width: 240px; height: 240px; bottom: 22%; right: 8%;
-    background: rgba(235,254,70,0.035);
-    clip-path: polygon(0 0, 100% 0, 100% 100%);
+  .hero-scroll svg { animation: bobDown 2s ease-in-out infinite; }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sage); margin-bottom: 20px;
   }
-  .shape-3 {
-    width: 160px; height: 160px; top: 42%; right: 32%;
-    background: rgba(255,255,255,0.018);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.15; color: var(--charcoal);
+    margin-bottom: 24px;
   }
-  .hero-stats {
-    position: absolute; bottom: 72px; left: 40px; right: 40px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; z-index: 2;
-    opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s;
+  .section-title em { font-style: italic; color: var(--sage); font-weight: 400; }
+
+  /* ── FAMILIAR ── */
+  .familiar { background: var(--white); }
+  .familiar-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start;
   }
-  .hero-stat {
-    background: rgba(22,22,28,0.88); border: 1px solid var(--border);
-    padding: 26px 28px; backdrop-filter: blur(12px);
+  .familiar-left .section-title { margin-bottom: 28px; }
+  .familiar-intro {
+    font-size: 16px; line-height: 1.85; color: var(--stone);
   }
-  .hero-stat-num {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-weight: 600; font-size: 42px; color: var(--lime);
-    line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px;
+  .familiar-list { list-style: none; }
+  .familiar-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(155,143,127,0.12);
+    font-size: 15px; color: var(--stone);
+    display: flex; align-items: flex-start; gap: 16px;
+    line-height: 1.6;
   }
-  .hero-stat-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--muted); line-height: 1.4;
+  .familiar-list li::before {
+    content: '';
+    width: 6px; height: 6px; min-width: 6px;
+    border-radius: 50%; background: var(--sage-mid);
+    margin-top: 9px;
   }
 
-  /* DIVIDER */
-  .divider { height: 1px; background: var(--border); margin: 0 56px; }
+  /* ── DEEPER TEXT ── */
+  .deeper {
+    background: var(--cream);
+    text-align: center;
+  }
+  .deeper-inner {
+    max-width: 680px; margin: 0 auto;
+  }
+  .deeper p {
+    font-size: 17px; line-height: 1.9; color: var(--stone);
+    margin-bottom: 20px;
+  }
+  .deeper p:last-child { margin-bottom: 0; }
 
-  /* SECTION BASE */
-  section { padding: 112px 56px; }
-  .s-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--lime);
-    display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  /* ── HOW I WORK ── */
+  .how-i-work { background: var(--warm); }
+  .how-header {
+    text-align: center; max-width: 640px; margin: 0 auto 72px;
   }
-  .s-label::before { content: ''; width: 32px; height: 1.5px; background: var(--lime); }
-  .s-title {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-weight: 600; font-size: clamp(36px, 4vw, 54px);
-    line-height: 1.05; letter-spacing: -0.02em;
+  .how-header p {
+    font-size: 16px; line-height: 1.85; color: var(--stone); margin-top: 20px;
   }
-  .s-title em {
-    font-family: 'Hedvig Letters Serif', serif;
-    font-style: italic; color: var(--lime); font-weight: 400;
+  .pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; max-width: 1100px; margin: 0 auto;
   }
-
-  /* WHAT WE DO */
-  .what-we-do { background: var(--bg); }
-  .wwd-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 72px;
+  .pillar {
+    background: var(--cream); padding: 52px 40px;
+    position: relative; transition: background 0.3s;
   }
-  .wwd-header-right {
-    max-width: 360px; font-size: 15px; line-height: 1.75;
-    color: var(--muted); padding-top: 8px;
-  }
-  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-  .service {
-    background: var(--bg-card); padding: 44px 32px;
-    position: relative; overflow: hidden; transition: background 0.25s;
-  }
-  .service::before {
+  .pillar::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: var(--border); transition: background 0.3s;
+    height: 3px; background: var(--sand);
+    transition: background 0.4s;
   }
-  .service:hover { background: var(--bg-raised); }
-  .service:hover::before { background: var(--lime); }
-  .svc-num {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-size: 12px; font-weight: 500; letter-spacing: 0.15em;
-    color: var(--lime); margin-bottom: 36px;
-  }
-  .svc-name {
-    font-size: 17px; font-weight: 700; line-height: 1.3;
-    margin-bottom: 14px; color: var(--white);
-  }
-  .svc-desc { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
-
-  /* PEOPLE */
-  .people { background: var(--bg-card); }
-  .people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 72px; }
-  .person { background: var(--bg); padding: 56px 52px; }
-  .person-top {
-    display: flex; align-items: flex-end; gap: 28px;
-    margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border);
-  }
-  .avatar {
-    width: 88px; height: 88px; background: var(--bg-card);
-    border: 1px solid var(--border);
+  .pillar:hover { background: var(--white); }
+  .pillar:hover::before { background: var(--sage); }
+  .pillar-icon {
+    width: 48px; height: 48px; margin-bottom: 28px;
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; position: relative;
+    color: var(--sage);
   }
-  .avatar::after {
-    content: ''; position: absolute; bottom: -1px; left: 0;
-    width: 100%; height: 2.5px; background: var(--lime);
+  .pillar h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 26px;
+    color: var(--charcoal); margin-bottom: 16px;
   }
-  .avatar-letters {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-weight: 600; font-size: 28px; color: var(--lime); letter-spacing: 0.05em;
+  .pillar p {
+    font-size: 14.5px; line-height: 1.8; color: var(--stone);
   }
-  .person-role {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--lime); margin-bottom: 6px;
+  .pillar .pillar-cta {
+    display: inline-block; margin-top: 24px;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--sage);
+    text-decoration: none; border-bottom: 1px solid var(--sage-mid);
+    padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
   }
-  .person-name {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-weight: 600; font-size: 28px; letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 4px;
-  }
-  .person-company { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
-  .person-bio { font-size: 14.5px; line-height: 1.8; color: var(--muted); margin-bottom: 16px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-  .tag {
-    padding: 5px 13px; border: 1px solid var(--border);
-    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--muted); transition: border-color 0.2s, color 0.2s;
-  }
-  .tag:hover { border-color: var(--lime); color: var(--lime); }
+  .pillar .pillar-cta:hover { color: var(--charcoal); border-color: var(--charcoal); }
 
-  /* RESULTS */
-  .results { background: var(--bg); }
-  .results-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .results-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .r-stat { background: var(--bg-card); padding: 40px 32px; position: relative; }
-  .r-stat-bar {
-    position: absolute; top: 0; left: 0;
-    width: 2.5px; height: 40px; background: var(--lime);
+  /* ── EXPERIENCE ── */
+  .experience { background: var(--white); }
+  .exp-header {
+    text-align: center; max-width: 600px; margin: 0 auto 72px;
   }
-  .r-num {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif; font-weight: 600;
-    font-size: 52px; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px;
+  .exp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; max-width: 1100px; margin: 0 auto;
   }
-  .r-num span { color: var(--lime); }
-  .r-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
-  .results-text .s-label { margin-bottom: 24px; }
-  .results-text .s-title { margin-bottom: 28px; }
-  .results-text p { font-size: 14.5px; line-height: 1.8; color: var(--muted); margin-bottom: 16px; }
-  .results-text .highlight { color: var(--lime); font-weight: 600; font-size: 14px; }
+  .exp-card {
+    background: var(--cream); padding: 52px 40px;
+    position: relative;
+  }
+  .exp-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--sand);
+  }
+  .exp-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300;
+    color: rgba(122,139,111,0.15); line-height: 1;
+    margin-bottom: 16px;
+  }
+  .exp-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 24px;
+    color: var(--charcoal); margin-bottom: 16px;
+  }
+  .exp-card p {
+    font-size: 14.5px; line-height: 1.8; color: var(--stone);
+  }
 
-  /* APPROACH */
-  .approach { background: var(--bg-card); }
-  .approach-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 72px; }
-  .step {
-    background: var(--bg); padding: 44px 32px;
-    position: relative; overflow: hidden; transition: background 0.25s;
+  /* ── WORKSHOP ── */
+  .workshop { background: var(--deep); color: var(--cream); }
+  .workshop-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
   }
-  .step-bar {
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: var(--border); transition: background 0.3s;
+  .workshop .section-label { color: var(--sage-mid); }
+  .workshop .section-title { color: var(--cream); }
+  .workshop .section-title em { color: var(--sage-mid); }
+  .workshop-desc {
+    font-size: 16px; line-height: 1.85; color: var(--taupe);
+    margin-bottom: 20px;
   }
-  .step:hover { background: #17171e; }
-  .step:hover .step-bar { background: var(--lime); }
-  .step-big-num {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif; font-weight: 600;
-    font-size: 88px; color: rgba(255,255,255,0.04); line-height: 1;
-    margin-bottom: 20px; letter-spacing: -0.04em;
+  .workshop-features { list-style: none; margin-top: 32px; }
+  .workshop-features li {
+    padding: 10px 0; font-size: 14.5px;
+    color: var(--taupe); display: flex;
+    align-items: flex-start; gap: 14px; line-height: 1.6;
   }
-  .step-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--white); }
-  .step-desc { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+  .workshop-features li::before {
+    content: '';
+    width: 6px; height: 6px; min-width: 6px;
+    border-radius: 50%; background: var(--sage-mid);
+    margin-top: 8px;
+  }
+  .workshop-visual {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 60px 48px; text-align: center;
+  }
+  .workshop-visual-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 400;
+    color: var(--cream); margin-bottom: 16px;
+  }
+  .workshop-visual-sub {
+    font-size: 14px; color: var(--taupe); margin-bottom: 32px; line-height: 1.7;
+  }
+  .workshop-btn {
+    display: inline-block; border: 1px solid var(--sage-mid);
+    color: var(--cream); padding: 14px 36px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .workshop-btn:hover { background: var(--sage); border-color: var(--sage); }
 
-  /* CONTACT */
-  .contact { background: var(--bg); }
-  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  /* ── CONTACT ── */
+  .contact { background: var(--cream); }
+  .contact-inner {
+    max-width: 720px; margin: 0 auto; text-align: center;
+  }
   .contact-heading {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif; font-weight: 600;
-    font-size: clamp(56px, 7vw, 96px); line-height: 0.92;
-    letter-spacing: -0.03em; margin-top: 24px; margin-bottom: 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.15; color: var(--charcoal); margin-bottom: 28px;
   }
-  .contact-heading span { color: var(--lime); }
-  .contact-sub { font-size: 15px; line-height: 1.75; color: var(--muted); }
-  .contact-cards { display: flex; flex-direction: column; gap: 2px; }
-  .contact-card {
-    background: var(--bg-card); padding: 40px 44px;
-    position: relative; overflow: hidden; transition: background 0.25s;
+  .contact-heading em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .contact-desc {
+    font-size: 16px; line-height: 1.85; color: var(--stone);
+    margin-bottom: 48px;
   }
-  .contact-card::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 0; background: var(--lime); transition: width 0.3s;
+  .contact-email {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400;
+    color: var(--charcoal); text-decoration: none;
+    border-bottom: 1px solid var(--sand);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
   }
-  .contact-card:hover { background: var(--bg-raised); }
-  .contact-card:hover::before { width: 2.5px; }
-  .cc-role { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 6px; }
-  .cc-name { font-family: 'Clash Grotesk', 'Manrope', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.01em; margin-bottom: 20px; }
-  .cc-links { display: flex; flex-direction: column; gap: 8px; }
-  .cc-link { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; text-decoration: none; transition: color 0.2s; }
-  .cc-link:hover { color: var(--white); }
-  .cc-arrow { color: var(--lime); font-size: 12px; font-weight: 700; }
+  .contact-email:hover { color: var(--sage); border-color: var(--sage); }
+  .contact-social {
+    margin-top: 40px; display: flex; justify-content: center; gap: 24px;
+  }
+  .contact-social a {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--sand); color: var(--stone);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-social a:hover { border-color: var(--sage); color: var(--sage); }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    background: #101014; padding: 36px 56px;
+    background: var(--warm); padding: 32px 60px;
     display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(155,143,127,0.12);
   }
-  .footer-logo-text {
-    font-family: 'Clash Grotesk', 'Manrope', sans-serif;
-    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: rgba(255,255,255,0.25);
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400; color: var(--taupe);
   }
-  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.18); }
+  .footer-copy { font-size: 12px; color: var(--taupe); letter-spacing: 0.04em; }
 
-  /* ANIMATIONS */
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+  @keyframes bobDown {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(6px); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
   .reveal.on { opacity: 1; transform: none; }
 
-  /* RESPONSIVE */
-  @media (max-width: 1100px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .services, .approach-steps { grid-template-columns: 1fr 1fr; }
-    .people-grid, .results-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-    nav, section, footer, .divider { padding-left: 28px; padding-right: 28px; }
-    .divider { margin: 0; }
-    .wwd-header { flex-direction: column; gap: 20px; }
-  }
-  @media (max-width: 640px) {
-    .services, .approach-steps, .results-stats { grid-template-columns: 1fr; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav, section, footer { padding-left: 28px; padding-right: 28px; }
+    nav { padding-top: 18px; padding-bottom: 18px; }
+    .familiar-inner { grid-template-columns: 1fr; gap: 48px; }
+    .pillars, .exp-grid { grid-template-columns: 1fr; }
+    .workshop-inner { grid-template-columns: 1fr; gap: 48px; }
     .nav-links { display: none; }
-    .person { padding: 36px 24px; }
+    .mobile-toggle { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--cream); z-index: 100;
+      justify-content: center; align-items: center;
+      gap: 28px; padding: 80px 28px;
+    }
+    .nav-links.open a { font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 36px; }
+    .pillar, .exp-card { padding: 36px 24px; }
+    .workshop-visual { padding: 40px 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="curR"></div>
-
-<nav>
-  <a class="nav-logo" href="#">
-    <div class="nav-logo-mark">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <rect x="1" y="1" width="4" height="11" fill="#16161C"/>
-        <rect x="7" y="1" width="6" height="6" fill="#16161C"/>
-      </svg>
-    </div>
-    <span class="nav-logo-text">Cornerman Consulting</span>
-  </a>
-  <div class="nav-links">
-    <a href="#what-we-do">What We Do</a>
-    <a href="#people">Our People</a>
-    <a href="#results">Results</a>
-    <a href="#contact" class="nav-cta">Work With Us</a>
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-name" href="#">Jenna Duffus</a>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#familiar">About</a>
+    <a href="#how-i-work">Approach</a>
+    <a href="#experience">Working Together</a>
+    <a href="#workshop">Workshop</a>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="padding:0;">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Revenue Growth Consulting</p>
-    <h1 class="hero-title">In Your<br><em>Corner.</em><br>Every<br>Round.</h1>
-    <p class="hero-desc">We don't just advise — we embed. Cornerman builds self-sustaining revenue engines for businesses ready to compete and win at the highest level.</p>
-    <a href="#contact" class="hero-btn">
-      Work With Us
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Psychologist</p>
+    <h1>Change the patterns<br>underneath your <em>anxiety</em></h1>
+    <p class="hero-desc">You can be capable, self-aware, and still feel stuck in anxious loops that don't respond to insight alone. My work focuses on shifting anxiety at the level it was formed — in your nervous system, your core beliefs, and the way you relate to yourself.</p>
+    <a href="#contact" class="hero-btn">Get in Touch</a>
   </div>
-  <div class="hero-right">
-    <div class="hero-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
+  <div class="hero-scroll">
+    <svg width="20" height="32" viewBox="0 0 20 32" fill="none">
+      <rect x="1" y="1" width="18" height="30" rx="9" stroke="#9B8F7F" stroke-width="1.2"/>
+      <circle cx="10" cy="10" r="2.5" fill="#7A8B6F"/>
+    </svg>
+  </div>
+</section>
+
+<!-- IF THIS FEELS FAMILIAR -->
+<section class="familiar" id="familiar">
+  <div class="familiar-inner reveal">
+    <div class="familiar-left">
+      <p class="section-label">If this feels familiar</p>
+      <h2 class="section-title">You might recognise yourself <em>in some of this</em></h2>
+      <p class="familiar-intro">You may already understand these patterns and still feel stuck in them. Insight rarely changes the pattern on its own, because what you're experiencing isn't just anxiety.</p>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">$2.7M</div>
-        <div class="hero-stat-label">Closed Won Revenue<br>FY26 to Date</div>
+    <ul class="familiar-list">
+      <li>Replaying conversations long after they've ended</li>
+      <li>Second-guessing decisions you've already made, or ones you haven't even made yet</li>
+      <li>Holding yourself to standards you would never expect from anyone else</li>
+      <li>Feeling responsible for other people's moods or comfort</li>
+      <li>Struggling to switch off or fully relax</li>
+      <li>Finding it difficult to set boundaries without guilt</li>
+      <li>Turning on yourself quickly when something goes wrong</li>
+      <li>Feeling anxious even when things are objectively fine</li>
+      <li>Moving through cycles of burnout</li>
+      <li>Feeling a quiet sense of disconnection from yourself</li>
+    </ul>
+  </div>
+</section>
+
+<!-- DEEPER -->
+<section class="deeper">
+  <div class="deeper-inner reveal">
+    <p class="section-label">Looking Beneath</p>
+    <h2 class="section-title">Anxiety is often the surface expression of <em>something deeper</em></h2>
+    <p>Identity, self-worth, attachment patterns, nervous system conditioning, internalised standards, relational strategies that formed over time.</p>
+    <p>That's the level we work at.</p>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="how-i-work" id="how-i-work">
+  <div class="how-header reveal">
+    <p class="section-label">How I Work</p>
+    <h2 class="section-title">Evidence-based, <em>personally tailored</em></h2>
+    <p>I draw from Cognitive Behavioural Therapy (CBT) and Acceptance and Commitment Therapy (ACT), alongside integrative and parts-informed work. These frameworks inform the structure of our sessions, but the work is always tailored to you.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M18 8C18 8 12 14 12 20c0 3.3 2.7 6 6 6s6-2.7 6-6c0-6-6-12-6-12z" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">+129%</div>
-        <div class="hero-stat-label">Growth in Closed<br>Deals Q-on-Q</div>
+      <h3>Nervous System</h3>
+      <p>Your nervous system shapes how you experience the world, in both body and mind. It influences your sense of safety and alertness, and plays a central role in how attention, memory, learning, and emotional responses are organised. We build regulation so your system becomes steadier, creating the conditions for clearer thinking, greater presence, and meaningful change.</p>
+      <a href="#contact" class="pillar-cta">Learn more</a>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect x="6" y="6" width="24" height="24" rx="2" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M12 18h12M18 12v12" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">+121%</div>
-        <div class="hero-stat-label">Pipeline Creation<br>vs Prior Baseline</div>
+      <h3>Core Beliefs</h3>
+      <p>Core beliefs form through experience. Over time, they become the lens through which you interpret yourself, other people, and the world around you. They influence your emotional reactions, your behaviour, your expectations, and the patterns that quietly shape your life. We identify the beliefs organising your internal world and update them so it reflects who you are now, not who you had to be then.</p>
+      <a href="#contact" class="pillar-cta">Learn more</a>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="14" r="6" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">+236%</div>
-        <div class="hero-stat-label">Deal Velocity<br>in 4 Months</div>
-      </div>
+      <h3>Relationship to Self</h3>
+      <p>The relationship you have with yourself shapes how you experience everything else. It influences your emotional tone, your confidence, your boundaries, and the way you move through relationships. When conditional self-regard becomes the default, your internal world can feel tense and effortful. We reshape that relationship so it becomes secure and self-compassionate, creating internal stability rather than tension.</p>
+      <a href="#contact" class="pillar-cta">Learn more</a>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- WHAT WE DO -->
-<section class="what-we-do" id="what-we-do">
-  <div class="wwd-header reveal">
-    <div>
-      <p class="s-label">What We Do</p>
-      <h2 class="s-title">We build the engine.<br>You drive the <em>growth.</em></h2>
+<!-- WHAT IT'S LIKE TO WORK TOGETHER -->
+<section class="experience" id="experience">
+  <div class="exp-header reveal">
+    <p class="section-label">Working Together</p>
+    <h2 class="section-title">What it's like to <em>work together</em></h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-num">01</div>
+      <h3>Who This is For</h3>
+      <p>This work is suited to thoughtful, capable people who find themselves facing the same challenges in different forms — in relationships, work, decision-making, or self-worth. You may not fully see the structure beneath it yet, but the pattern feels familiar. You're ready to understand what's driving it and change it at its root.</p>
     </div>
-    <p class="wwd-header-right">We design and embed Revenue Generation Engines that unify marketing, sales, and customer success — turning strategy into consistent, predictable revenue through data, training, and accountability.</p>
-  </div>
-  <div class="services">
-    <div class="service reveal"><div class="svc-num">01</div><div class="svc-name">Revenue Strategy & Architecture</div><p class="svc-desc">We connect service delivery to financial outcomes through segmentation, forecasting, and KPI frameworks — building growth systems from the ground up.</p></div>
-    <div class="service reveal"><div class="svc-num">02</div><div class="svc-name">Sales Enablement & Execution</div><p class="svc-desc">Playbooks, training, pipeline discipline, and KPI accountability — transforming sales teams into high-performing, data-driven operators.</p></div>
-    <div class="service reveal"><div class="svc-num">03</div><div class="svc-name">Marketing Activation & Pipeline</div><p class="svc-desc">We turn marketing into a measurable sales engine — data-led campaigns, ROI analysis, and campaign development teams that generate qualified pipeline.</p></div>
-    <div class="service reveal"><div class="svc-num">04</div><div class="svc-name">Account Management & Retention</div><p class="svc-desc">Tiering models, cross-sell frameworks, and utilisation programs that protect and grow existing revenue — turning customers into long-term partners.</p></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PEOPLE -->
-<section class="people" id="people">
-  <div class="reveal">
-    <p class="s-label">Our People</p>
-    <h2 class="s-title">Two operators.<br>One <em>mission.</em></h2>
-  </div>
-  <div class="people-grid">
-    <div class="person reveal">
-      <div class="person-top">
-        <div class="avatar"><span class="avatar-letters">CM</span></div>
-        <div>
-          <div class="person-role">CEO & Founder</div>
-          <div class="person-name">Craig Moore</div>
-          <div class="person-company">Cornerman Consulting</div>
-        </div>
-      </div>
-      <p class="person-bio">Craig is the architect of the Cornerman methodology — a hands-on revenue transformation framework built from real-world experience scaling sales functions across healthcare, rehabilitation, and professional services.</p>
-      <p class="person-bio">He specialises in embedding directly into leadership teams to design and execute group-level growth engines: restructuring CRM operations, building pipeline discipline, designing account management models, and establishing the cadences and accountability systems that turn strategy into measurable outcomes.</p>
-      <p class="person-bio">Craig's approach is direct — get in close, understand the real gaps, and build systems the business can own long after the engagement ends.</p>
-      <div class="tags">
-        <span class="tag">Revenue Architecture</span><span class="tag">CRM & HubSpot</span><span class="tag">Sales Transformation</span><span class="tag">Deal Clinics</span><span class="tag">Executive Advisory</span><span class="tag">QBR Facilitation</span>
-      </div>
+    <div class="exp-card reveal">
+      <div class="exp-num">02</div>
+      <h3>The Experience</h3>
+      <p>Sessions are structured without being rigid. There's direction in the background, but space for what's present on the day. We identify patterns, build insight gradually, and work in a way that allows change to integrate rather than feel forced.</p>
     </div>
-    <div class="person reveal">
-      <div class="person-top">
-        <div class="avatar"><span class="avatar-letters">CC</span></div>
-        <div>
-          <div class="person-role">Director</div>
-          <div class="person-name">Chris Chiofalo</div>
-          <div class="person-company">Cornerman Consulting</div>
-        </div>
-      </div>
-      <p class="person-bio">Chris brings the commercial rigour that turns strategy into execution. As Director at Cornerman, he leads client delivery — overseeing the implementation of revenue systems, managing stakeholder relationships, and ensuring every engagement delivers measurable business impact.</p>
-      <p class="person-bio">His strength lies in bridging the gap between senior leadership vision and frontline execution — working directly with sales, marketing, and customer success teams to embed new disciplines and drive adoption from the ground up.</p>
-      <p class="person-bio">Chris is the day-to-day partner clients rely on to keep the engine running — maintaining momentum, holding the team accountable, and continuously translating data into decisions.</p>
-      <div class="tags">
-        <span class="tag">Client Delivery</span><span class="tag">Sales Enablement</span><span class="tag">Pipeline Management</span><span class="tag">Stakeholder Engagement</span><span class="tag">Account Management</span><span class="tag">Change Management</span>
-      </div>
+    <div class="exp-card reveal">
+      <div class="exp-num">03</div>
+      <h3>What Changes</h3>
+      <p>Over time, clients often describe feeling more settled in themselves. Symptoms become less dominant, reactions less automatic, and decision-making clearer. There is greater self-understanding, more compassion, and a growing sense of internal stability that extends into relationships, work, and everyday life.</p>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- RESULTS -->
-<section class="results" id="results">
-  <div class="results-inner">
-    <div class="results-stats reveal">
-      <div class="r-stat"><div class="r-stat-bar"></div><div class="r-num">$<span>2.7</span>M</div><div class="r-label">Total Closed Won<br>Revenue FY26</div></div>
-      <div class="r-stat"><div class="r-stat-bar"></div><div class="r-num">+<span>129</span>%</div><div class="r-label">Growth in Closed<br>Deals Q-on-Q</div></div>
-      <div class="r-stat"><div class="r-stat-bar"></div><div class="r-num">+<span>121</span>%</div><div class="r-label">Pipeline Creation<br>vs Prior Baseline</div></div>
-      <div class="r-stat"><div class="r-stat-bar"></div><div class="r-num">+<span>236</span>%</div><div class="r-label">Deal Velocity<br>in 4 Months</div></div>
+<!-- WORKSHOP -->
+<section class="workshop" id="workshop">
+  <div class="workshop-inner">
+    <div class="reveal">
+      <p class="section-label">Audio Workshop</p>
+      <h2 class="section-title">Anxiety <em>&amp; Me</em></h2>
+      <p class="workshop-desc">A structured audio workshop for understanding and working with anxiety. Designed for people who want clear, structured guidance in one place — a way to understand what's happening in their system and know what to do when anxiety rises.</p>
+      <ul class="workshop-features">
+        <li>How anxiety functions in the body and brain</li>
+        <li>Why certain loops and thinking patterns repeat</li>
+        <li>How your nervous system reinforces those cycles</li>
+        <li>Practical grounding tools you can use immediately</li>
+        <li>How to work with thoughts more effectively</li>
+        <li>How to apply these skills in everyday life</li>
+      </ul>
     </div>
-    <div class="results-text reveal">
-      <p class="s-label">Proven Results</p>
-      <h2 class="s-title">Numbers don't lie.<br><em>Neither do we.</em></h2>
-      <p style="margin-top:28px;">These aren't projections. They're outcomes from a real engagement where we embedded as a dedicated growth partner — designing the sales engine, cleaning the data, training the team, and driving execution from day one.</p>
-      <p>When Altius Group needed to transform from a collection of individual service lines into a coordinated, group-led commercial operation, we built the framework and stayed in the room until it worked.</p>
-      <p class="highlight">Deal volume grew from 35 deals in Q1 to 80 in Q2. Average monthly pipeline rose from $2.3M to $5.1M. The engine is running.</p>
+    <div class="workshop-visual reveal">
+      <div class="workshop-visual-title">Anxiety &amp; Me</div>
+      <p class="workshop-visual-sub">Guided audio modules &amp; practical worksheets you can return to as often as needed.</p>
+      <a href="#contact" class="workshop-btn">Explore the Workshop</a>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
-
-<!-- APPROACH -->
-<section class="approach" id="approach">
-  <div class="reveal">
-    <p class="s-label">Our Approach</p>
-    <h2 class="s-title">Four phases.<br>One <em>outcome.</em></h2>
-  </div>
-  <div class="approach-steps">
-    <div class="step reveal"><div class="step-bar"></div><div class="step-big-num">01</div><div class="step-title">Discovery & Plan Design</div><p class="step-desc">We meet your executive team, map your current state, assess risks and opportunities, and design a precise implementation roadmap covering data, campaigns, sales model, and account management.</p></div>
-    <div class="step reveal"><div class="step-bar"></div><div class="step-big-num">02</div><div class="step-title">Strategy & Design</div><p class="step-desc">We define your KPI framework, review CRM architecture, segment your customer base, and coordinate the commercial restructure — built to the realities of how your business actually works.</p></div>
-    <div class="step reveal"><div class="step-bar"></div><div class="step-big-num">03</div><div class="step-title">Enablement & Execution</div><p class="step-desc">We stand up a cross-functional campaign development team, develop sales playbooks and scripts, and drive the activation of your full go-to-market capability across sales, marketing, and customer success.</p></div>
-    <div class="step reveal"><div class="step-bar"></div><div class="step-big-num">04</div><div class="step-title">Operationalisation & Performance</div><p class="step-desc">Weekly execution rhythm, fortnightly steering committees, Deal Clinics, QBRs, and ongoing leadership coaching — until the business owns the engine and the results are undeniable.</p></div>
-  </div>
-</section>
-
-<div class="divider"></div>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="reveal">
-      <p class="s-label">Get In Touch</p>
-      <h2 class="contact-heading">Let's<br><span>Build</span><br>Together.</h2>
-      <p class="contact-sub">If you're ready to stop leaving revenue on the table and start building a commercial operation that performs — we'd like to hear from you. We work with a focused number of clients at any one time to make sure every engagement gets the attention it deserves.</p>
-    </div>
-    <div class="contact-cards reveal">
-      <div class="contact-card">
-        <div class="cc-role">CEO & Founder</div>
-        <div class="cc-name">Craig Moore</div>
-        <div class="cc-links">
-          <a class="cc-link" href="mailto:craig@consulting-cm.com"><span class="cc-arrow">→</span>craig@consulting-cm.com</a>
-          <a class="cc-link" href="tel:+61414545588"><span class="cc-arrow">→</span>+61 414 545 588</a>
-        </div>
-      </div>
-      <div class="contact-card">
-        <div class="cc-role">Director</div>
-        <div class="cc-name">Chris Chiofalo</div>
-        <div class="cc-links">
-          <a class="cc-link" href="mailto:chris@consulting-cm.com"><span class="cc-arrow">→</span>chris@consulting-cm.com</a>
-        </div>
-      </div>
+  <div class="contact-inner reveal">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="contact-heading">Let's begin the <em>conversation</em></h2>
+    <p class="contact-desc">If you'd like to explore whether this approach is right for you, I'd welcome hearing from you. Reach out to start the conversation.</p>
+    <a class="contact-email" href="mailto:hello@jennaduffus.co">hello@jennaduffus.co</a>
+    <div class="contact-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <span class="footer-logo-text">Cornerman Consulting</span>
-  <span class="footer-copy">© 2025 Cornerman Consulting. All rights reserved.</span>
+  <span class="footer-name">Jenna Duffus — Psychologist</span>
+  <span class="footer-copy">&copy; 2025 Jenna Duffus. All rights reserved.</span>
 </footer>
 
 <script>
-  const cur = document.getElementById('cur');
-  const curR = document.getElementById('curR');
-  document.addEventListener('mousemove', e => {
-    cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
-    curR.style.left = e.clientX + 'px'; curR.style.top = e.clientY + 'px';
+  // Navbar shrink on scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
   });
-  document.querySelectorAll('a,.service,.step,.r-stat,.contact-card,.person').forEach(el => {
-    el.addEventListener('mouseenter', () => { curR.style.width='54px'; curR.style.height='54px'; curR.style.borderColor='rgba(235,254,70,0.65)'; });
-    el.addEventListener('mouseleave', () => { curR.style.width='36px'; curR.style.height='36px'; curR.style.borderColor='rgba(235,254,70,0.4)'; });
+
+  // Mobile menu
+  const toggle = document.getElementById('mobileToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
   });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+
+  // Reveal on scroll
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-        siblings.forEach((el, i) => setTimeout(() => el.classList.add('on'), i * 100));
+        if (siblings.length > 1) {
+          siblings.forEach((el, i) => setTimeout(() => el.classList.add('on'), i * 120));
+        } else {
+          entry.target.classList.add('on');
+        }
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
