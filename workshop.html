@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshop - Jenna Duffus | Psychologist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #FAF8F2;
+    --warm:      #F3EFE7;
+    --sand:      #E8E2D6;
+    --taupe:     #9B8F7F;
+    --stone:     #6B5F53;
+    --charcoal:  #3A3430;
+    --deep:      #2A2522;
+    --sage:      #7A8B6F;
+    --sage-soft: #E8EDE4;
+    --sage-mid:  #A8B89E;
+    --white:     #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--charcoal);
+    font-family: 'Lato', sans-serif; font-weight: 300;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    background: rgba(250,248,242,0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(155,143,127,0.1);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 16px 60px; }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 22px;
+    color: var(--charcoal); text-decoration: none; letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    color: var(--stone); text-decoration: none;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-links a.active { color: var(--charcoal); font-weight: 700; }
+  .nav-cta {
+    background: var(--sage) !important; color: var(--white) !important;
+    padding: 10px 24px !important; letter-spacing: 0.08em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--stone) !important; }
+  .mobile-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 28px; height: 20px; position: relative; z-index: 101;
+  }
+  .mobile-toggle span {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--charcoal); transition: 0.3s; position: absolute; left: 0;
+  }
+  .mobile-toggle span:nth-child(1) { top: 0; }
+  .mobile-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .mobile-toggle span:nth-child(3) { bottom: 0; }
+  .mobile-toggle.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+  .mobile-toggle.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sage); margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.15; color: var(--charcoal); margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--sage); font-weight: 400; }
+
+  /* ── WORKSHOP HERO ── */
+  .workshop-hero {
+    min-height: 80vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 160px 24px 100px;
+    background: var(--deep); color: var(--cream);
+    position: relative;
+  }
+  .workshop-hero-content { max-width: 700px; }
+  .workshop-hero .section-label { color: var(--sage-mid); opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s; }
+  .workshop-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.1; color: var(--cream); margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.35s;
+  }
+  .workshop-hero h1 em { font-style: italic; color: var(--sage-mid); font-weight: 400; }
+  .workshop-hero p {
+    font-size: 17px; line-height: 1.85; color: var(--taupe);
+    max-width: 560px; margin: 0 auto 48px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+  .btn-waitlist {
+    display: inline-block; border: 1px solid var(--sage-mid);
+    color: var(--cream); padding: 16px 44px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, border-color 0.3s;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s;
+  }
+  .btn-waitlist:hover { background: var(--sage); border-color: var(--sage); }
+
+  /* ── WHY THIS WORKSHOP ── */
+  .why-workshop { background: var(--white); }
+  .why-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start;
+  }
+  .why-inner .section-title { margin-bottom: 28px; }
+  .why-inner p {
+    font-size: 16px; line-height: 1.9; color: var(--stone);
+    margin-bottom: 16px;
+  }
+  .why-inner p:last-child { margin-bottom: 0; }
+  .learn-list { list-style: none; }
+  .learn-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(155,143,127,0.12);
+    font-size: 15px; color: var(--stone);
+    display: flex; align-items: flex-start; gap: 16px; line-height: 1.6;
+  }
+  .learn-list li::before {
+    content: '';
+    width: 6px; height: 6px; min-width: 6px;
+    border-radius: 50%; background: var(--sage-mid);
+    margin-top: 9px;
+  }
+
+  /* ── WHAT'S INCLUDED ── */
+  .whats-included { background: var(--cream); }
+  .included-header {
+    text-align: center; max-width: 640px; margin: 0 auto 64px;
+  }
+  .included-header p {
+    font-size: 16px; line-height: 1.85; color: var(--stone); margin-top: 20px;
+  }
+  .included-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; max-width: 1100px; margin: 0 auto;
+  }
+  .included-card {
+    background: var(--white); padding: 44px 36px;
+    position: relative;
+  }
+  .included-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--sand);
+  }
+  .included-card .card-icon {
+    color: var(--sage); margin-bottom: 20px;
+  }
+  .included-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 22px;
+    color: var(--charcoal); margin-bottom: 12px;
+  }
+  .included-card p {
+    font-size: 14.5px; line-height: 1.8; color: var(--stone);
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-it-works { background: var(--warm); }
+  .how-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  }
+  .how-header {
+    text-align: center; max-width: 600px; margin: 0 auto 64px;
+  }
+  .how-item {
+    background: var(--cream); padding: 36px 32px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .how-item .card-icon { color: var(--sage); min-width: 24px; margin-top: 2px; }
+  .how-item span {
+    font-size: 15px; line-height: 1.7; color: var(--stone);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--deep); text-align: center; color: var(--cream);
+  }
+  .cta-section .section-label { color: var(--sage-mid); }
+  .cta-section .section-title { color: var(--cream); }
+  .cta-section .section-title em { color: var(--sage-mid); }
+  .cta-section p {
+    font-size: 16px; line-height: 1.85; color: var(--taupe);
+    max-width: 520px; margin: 0 auto 40px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--warm); padding: 32px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(155,143,127,0.12);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400; color: var(--taupe);
+  }
+  .footer-copy { font-size: 12px; color: var(--taupe); letter-spacing: 0.04em; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.on { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav, section, footer { padding-left: 28px; padding-right: 28px; }
+    nav { padding-top: 18px; padding-bottom: 18px; }
+    .why-inner { grid-template-columns: 1fr; gap: 48px; }
+    .included-grid { grid-template-columns: 1fr; }
+    .how-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--cream); z-index: 100;
+      justify-content: center; align-items: center;
+      gap: 28px; padding: 80px 28px;
+    }
+    .nav-links.open a { font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .included-card, .how-item { padding: 32px 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-name" href="index.html">Jenna Duffus</a>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="services.html">Services</a>
+    <a href="workshop.html" class="active">Workshop</a>
+    <a href="faq.html">FAQ</a>
+    <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="workshop-hero">
+  <div class="workshop-hero-content">
+    <p class="section-label">Audio Workshop</p>
+    <h1>Anxiety <em>&amp; Me</em></h1>
+    <p>A structured audio workshop for understanding and working with anxiety. Understand what's happening in your system and know what to do when anxiety rises.</p>
+    <a href="#waitlist" class="btn-waitlist">Join the Waitlist</a>
+  </div>
+</section>
+
+<!-- WHY THIS WORKSHOP -->
+<section class="why-workshop">
+  <div class="why-inner reveal">
+    <div>
+      <p class="section-label">Why This Workshop</p>
+      <h2 class="section-title">Bridging the gap between understanding and <em>change</em></h2>
+      <p>Many people develop insight into their anxiety. They can recognise the patterns, name the triggers, and describe what happens in their mind. Yet the experience itself often continues.</p>
+      <p>This workshop was designed to bridge that gap between understanding and change. It brings together psychological science and practical tools in one structured place so you can begin working with anxiety in a clearer and more effective way.</p>
+    </div>
+    <div>
+      <p class="section-label">What You'll Learn</p>
+      <ul class="learn-list">
+        <li>How anxiety functions in the body and brain</li>
+        <li>Why certain loops and thinking patterns repeat</li>
+        <li>How your nervous system reinforces those cycles</li>
+        <li>Practical grounding tools you can use immediately</li>
+        <li>How to work with thoughts more effectively</li>
+        <li>How to apply these skills in everyday life</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="whats-included">
+  <div class="included-header reveal">
+    <p class="section-label">What the Workshop Includes</p>
+    <h2 class="section-title">Guided modules and <em>practical tools</em></h2>
+    <p>The workshop is delivered through a series of guided audio modules and practical worksheets designed to help you understand anxiety and work with it more effectively in everyday life. You can move through the material at your own pace and return to the exercises whenever you need them.</p>
+  </div>
+  <div class="included-grid">
+    <div class="included-card reveal">
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1.2"/>
+          <polygon points="11,9 20,14 11,19" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3>Audio Modules</h3>
+      <p>Structured audio modules grounded in psychological science and shaped by years of clinical work. Each module builds deliberately — strengthening awareness, regulation, and flexibility over time.</p>
+    </div>
+    <div class="included-card reveal">
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="4" y="4" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M9 10h10M9 14h10M9 18h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Practical Worksheets</h3>
+      <p>Exercises and worksheets you can return to as often as needed. Designed to translate understanding into practice so you can apply what you learn in everyday life.</p>
+    </div>
+    <div class="included-card reveal">
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 4v20M4 14h20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <h3>Lifetime Access</h3>
+      <p>Move through the material at your own pace. Return to any module or exercise whenever you need them. The workshop is yours to keep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="how-header reveal">
+    <p class="section-label">How it Works</p>
+    <h2 class="section-title">Everything you need in <em>one place</em></h2>
+  </div>
+  <div class="how-inner">
+    <div class="how-item reveal">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+      </div>
+      <span>Structured audio modules</span>
+    </div>
+    <div class="how-item reveal">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+      </div>
+      <span>Practical worksheets and exercises</span>
+    </div>
+    <div class="how-item reveal">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+      </div>
+      <span>Clear explanations of how anxiety works</span>
+    </div>
+    <div class="how-item reveal">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+      </div>
+      <span>Grounding and regulation tools</span>
+    </div>
+    <div class="how-item reveal">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+      </div>
+      <span>Cognitive and behavioural strategies</span>
+    </div>
+    <div class="how-item reveal">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+      </div>
+      <span>Lifetime access to the material</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="waitlist">
+  <div class="reveal">
+    <p class="section-label">Coming Soon</p>
+    <h2 class="section-title">Join the <em>waitlist</em></h2>
+    <p>Be the first to know when the workshop launches. Join the waitlist to receive updates.</p>
+    <a href="mailto:hello@jennaduffus.co" class="btn-waitlist">Join the Waitlist</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Jenna Duffus — Psychologist</span>
+  <span class="footer-copy">&copy; 2025 Jenna Duffus. All rights reserved.</span>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  const toggle = document.getElementById('mobileToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }); });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('on'); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

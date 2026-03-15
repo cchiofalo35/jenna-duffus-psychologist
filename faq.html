@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ - Jenna Duffus | Psychologist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #FAF8F2;
+    --warm:      #F3EFE7;
+    --sand:      #E8E2D6;
+    --taupe:     #9B8F7F;
+    --stone:     #6B5F53;
+    --charcoal:  #3A3430;
+    --deep:      #2A2522;
+    --sage:      #7A8B6F;
+    --sage-soft: #E8EDE4;
+    --sage-mid:  #A8B89E;
+    --white:     #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--charcoal);
+    font-family: 'Lato', sans-serif; font-weight: 300;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    background: rgba(250,248,242,0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(155,143,127,0.1);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 16px 60px; }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 22px;
+    color: var(--charcoal); text-decoration: none; letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    color: var(--stone); text-decoration: none;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-links a.active { color: var(--charcoal); font-weight: 700; }
+  .nav-cta {
+    background: var(--sage) !important; color: var(--white) !important;
+    padding: 10px 24px !important; letter-spacing: 0.08em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--stone) !important; }
+  .mobile-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 28px; height: 20px; position: relative; z-index: 101;
+  }
+  .mobile-toggle span {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--charcoal); transition: 0.3s; position: absolute; left: 0;
+  }
+  .mobile-toggle span:nth-child(1) { top: 0; }
+  .mobile-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .mobile-toggle span:nth-child(3) { bottom: 0; }
+  .mobile-toggle.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+  .mobile-toggle.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 160px 60px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
+  }
+  .page-header .section-label {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sage); margin-bottom: 20px;
+  }
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.15; color: var(--charcoal);
+  }
+  .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+
+  /* ── FAQ ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sage); margin-bottom: 20px;
+  }
+  .faq-section { background: var(--white); }
+  .faq-inner { max-width: 780px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid rgba(155,143,127,0.15);
+  }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 0; text-align: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; font-size: 22px;
+    color: var(--charcoal); line-height: 1.3;
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--sage); }
+  .faq-icon {
+    width: 24px; height: 24px; min-width: 24px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--sage); margin-left: 20px;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 600px;
+  }
+  .faq-answer-inner {
+    padding: 0 0 28px;
+    font-size: 15px; line-height: 1.85; color: var(--stone);
+  }
+  .faq-answer-inner p { margin-bottom: 12px; }
+  .faq-answer-inner p:last-child { margin-bottom: 0; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--cream); text-align: center;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.15; color: var(--charcoal); margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .cta-section p {
+    font-size: 16px; line-height: 1.85; color: var(--stone);
+    max-width: 480px; margin: 0 auto 40px;
+  }
+  .btn-solid {
+    display: inline-block; background: var(--sage); color: var(--white);
+    padding: 16px 40px; font-family: 'Lato', sans-serif;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-solid:hover { background: var(--stone); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--warm); padding: 32px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(155,143,127,0.12);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400; color: var(--taupe);
+  }
+  .footer-copy { font-size: 12px; color: var(--taupe); letter-spacing: 0.04em; }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.on { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav, section, footer, .page-header { padding-left: 28px; padding-right: 28px; }
+    nav { padding-top: 18px; padding-bottom: 18px; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--cream); z-index: 100;
+      justify-content: center; align-items: center;
+      gap: 28px; padding: 80px 28px;
+    }
+    .nav-links.open a { font-size: 16px; }
+    .faq-question { font-size: 19px; }
+  }
+  @media (max-width: 480px) {
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-name" href="index.html">Jenna Duffus</a>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="services.html">Services</a>
+    <a href="workshop.html">Workshop</a>
+    <a href="faq.html" class="active">FAQ</a>
+    <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <p class="section-label">FAQ</p>
+  <h1>Frequently Asked <em>Questions</em></h1>
+</div>
+
+<section class="faq-section">
+  <div class="faq-inner reveal">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I know if this is the right fit?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>If you recognise yourself in the patterns described on this website — feeling internally tense, stuck in repeating challenges, or ready to understand yourself more deeply — this work is likely aligned.</p>
+        <p>If you are still unsure, the best way to determine fit is to reach out. We can clarify together whether this approach is suitable for you.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What happens in the first session?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>The first session is about building a clear understanding of what's happening now and the context that shaped it. We'll explore your current concerns, symptoms, coping strategies, goals, and relevant personal and family history. From there, I begin formulating the patterns that may be organising your experience.</p>
+        <p>You don't need to arrive with clarity. That's part of the process. My role is to help you bring structure to what feels tangled and establish a direction for our work.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How frequent are sessions?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>We usually begin weekly for the first two to three sessions. This allows us to establish clarity and momentum. After that, we may move to fortnightly sessions. Over time, some people choose to extend to monthly check-ins.</p>
+        <p>Frequency is something we decide together.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How long does therapy typically last?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>It depends on what we're working on. For situational challenges, some people attend until they have clarity and feel more themselves. For deeper, long-standing patterns, the work tends to be longer-term.</p>
+        <p>There is no fixed timeline. We review progress regularly, and you remain in control of how long you continue.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What are your fees?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>$220 per 50-minute session. Sessions are conducted via Zoom (telehealth).</p>
+        <p>With a valid Mental Health Care Plan and GP referral, Medicare rebates approximately $95 per session, reducing the out-of-pocket cost to around $125.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I claim Medicare rebates?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Yes. With a valid Mental Health Care Plan and GP referral, Medicare rebates approximately $95 per session for up to 10 sessions per calendar year.</p>
+        <p>Sessions are paid in full upfront. You submit the claim via the Medicare Express Plus app or myGov, and the rebate is usually returned to your account within one to three business days.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What is the cancellation policy?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Appointments cancelled or rescheduled with less than 24 hours' notice incur the full session fee. Exceptions may be made in cases of sudden illness or unforeseen personal emergencies at my discretion.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What if I've had therapy before and it didn't help?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Different therapists bring different frameworks, styles, and ways of working. The approach, the pace, and the relational dynamic all shape how therapy feels and how effective it is for you.</p>
+        <p>If something didn't feel helpful in the past, that's valuable information. We can talk through what worked, what didn't, and what you would want to feel different this time. The aim is to create a space that feels thoughtful, structured, and aligned.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What if I don't know exactly what's wrong?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>You don't need a clear explanation before starting. Part of this work involves identifying patterns, clarifying what feels off, and understanding what's driving it. We build that clarity together.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Is this service suitable if I'm in crisis?
+        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>This service is not designed for acute crisis support. If you are experiencing immediate safety concerns, please contact emergency services or your local crisis support service.</p>
+        <p>In Australia:<br>Lifeline: 13 11 14<br>Emergency: 000</p>
+        <p>You are welcome to reach out if you're unsure.</p>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="reveal">
+    <p class="section-label">Still Unsure?</p>
+    <h2 class="section-title">You're welcome to <em>reach out</em></h2>
+    <p>If you have a question that isn't answered here, feel free to get in touch.</p>
+    <a href="mailto:hello@jennaduffus.co" class="btn-solid">Get in Touch</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Jenna Duffus — Psychologist</span>
+  <span class="footer-copy">&copy; 2025 Jenna Duffus. All rights reserved.</span>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  const toggle = document.getElementById('mobileToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }); });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('on'); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
