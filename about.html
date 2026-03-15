@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Jenna Duffus | Psychologist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FAF8F2;--warm:#F3EFE7;--sand:#E8E2D6;--taupe:#9B8F7F;--stone:#6B5F53;
+    --charcoal:#3A3430;--deep:#2A2522;--sage:#7A8B6F;--sage-soft:#E8EDE4;--sage-mid:#A8B89E;--white:#FFFFFF;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--charcoal);font-family:'Lato',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.7}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 60px;background:rgba(250,248,242,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(155,143,127,0.1);transition:padding 0.3s}
+  nav.scrolled{padding:16px 60px}
+  .nav-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;color:var(--charcoal);text-decoration:none;letter-spacing:0.01em}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{color:var(--stone);text-decoration:none;font-size:13px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+  .nav-links a:hover{color:var(--charcoal)}
+  .nav-links a.active{color:var(--charcoal);font-weight:700}
+  .nav-home{display:flex;align-items:center}
+  .nav-cta{background:var(--sage)!important;color:var(--white)!important;padding:10px 24px!important;letter-spacing:0.08em!important;transition:background 0.2s!important}
+  .nav-cta:hover{background:var(--stone)!important}
+  .mobile-toggle{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:101}
+  .mobile-toggle span{display:block;width:100%;height:1.5px;background:var(--charcoal);transition:0.3s;position:absolute;left:0}
+  .mobile-toggle span:nth-child(1){top:0}
+  .mobile-toggle span:nth-child(2){top:50%;transform:translateY(-50%)}
+  .mobile-toggle span:nth-child(3){bottom:0}
+  .mobile-toggle.open span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}
+  .mobile-toggle.open span:nth-child(2){opacity:0}
+  .mobile-toggle.open span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
+
+  section{padding:100px 60px}
+  .section-label{font-size:12px;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);margin-bottom:20px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4vw,52px);line-height:1.15;color:var(--charcoal);margin-bottom:24px}
+  .section-title em{font-style:italic;color:var(--sage);font-weight:400}
+
+  .page-header{padding:160px 60px 80px;text-align:center;background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%)}
+  .page-header h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,5vw,60px);line-height:1.15;color:var(--charcoal);margin-bottom:24px}
+  .page-header h1 em{font-style:italic;color:var(--sage);font-weight:400}
+
+  /* INTRO */
+  .about-intro{background:var(--white)}
+  .about-intro-inner{max-width:780px;margin:0 auto}
+  .about-intro-inner p{font-size:17px;line-height:1.9;color:var(--stone);margin-bottom:20px}
+  .about-intro-inner p:last-child{margin-bottom:0}
+  .btn-solid{display:inline-block;background:var(--sage);color:var(--white);padding:16px 40px;font-family:'Lato',sans-serif;font-size:13px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;margin-top:32px}
+  .btn-solid:hover{background:var(--stone);transform:translateY(-1px)}
+
+  /* APPROACH */
+  .about-approach{background:var(--cream)}
+  .approach-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .approach-inner p{font-size:16px;line-height:1.9;color:var(--stone);margin-bottom:16px}
+  .approach-inner p:last-child{margin-bottom:0}
+
+  /* BACKGROUND */
+  .about-bg{background:var(--warm)}
+  .bg-inner{max-width:780px;margin:0 auto}
+  .bg-inner p{font-size:16px;line-height:1.9;color:var(--stone);margin-bottom:16px}
+  .bg-inner p:last-child{margin-bottom:0}
+
+  /* PERSONAL NOTE */
+  .personal-note{background:var(--white)}
+  .note-inner{max-width:780px;margin:0 auto}
+  .note-inner p{font-size:16px;line-height:1.9;color:var(--stone);margin-bottom:16px}
+  .note-inner p:last-child{margin-bottom:0}
+
+  footer{background:var(--warm);padding:32px 60px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(155,143,127,0.12)}
+  .footer-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--taupe)}
+  .footer-copy{font-size:12px;color:var(--taupe);letter-spacing:0.04em}
+  .footer-social{display:flex;align-items:center;gap:16px}
+  .footer-social a{color:var(--taupe);transition:color 0.2s;display:flex;align-items:center}
+  .footer-social a:hover{color:var(--sage)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+  .reveal.on{opacity:1;transform:none}
+
+  @media(max-width:768px){
+    nav,section,footer,.page-header{padding-left:28px;padding-right:28px}
+    nav{padding-top:18px;padding-bottom:18px}
+    .approach-inner{grid-template-columns:1fr;gap:48px}
+    .nav-links{display:none}
+    .mobile-toggle{display:block}
+    .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);z-index:100;justify-content:center;align-items:center;gap:28px;padding:80px 28px}
+    .nav-links.open a{font-size:16px}
+  }
+  @media(max-width:480px){
+    footer{flex-direction:column;gap:8px;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-name" href="index.html">Jenna Duffus</a>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="nav-home" aria-label="Home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="about.html" class="active">About</a>
+    <a href="services.html">Services</a>
+    <a href="workshop.html">Workshop</a>
+    <a href="resources.html">Resources</a>
+    <a href="faq.html">FAQ</a>
+    <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <p class="section-label">About</p>
+  <h1>About <em>Jenna Duffus</em></h1>
+</div>
+
+<section class="about-intro">
+  <div class="about-intro-inner reveal">
+    <p>I'm a registered psychologist working with people who want to understand themselves more clearly and change patterns that no longer serve them.</p>
+    <p>Much of my work centres around anxiety and the many ways it can shape experience — through overthinking, perfectionism, hyper-attunement, self-criticism, people-pleasing, procrastination, recurring relational dynamics, and much more.</p>
+    <p>Over time, these patterns can quietly shape how someone relates to themselves — affecting confidence, self-worth, and the sense of connection they feel to their own thoughts, needs, and direction in life.</p>
+    <p>Therapy, in my view, isn't simply about managing symptoms. It's about understanding the structure beneath them, so change becomes possible at the level where those patterns were formed.</p>
+    <a href="index.html#contact" class="btn-solid">Get in Touch</a>
+  </div>
+</section>
+
+<section class="about-approach">
+  <div class="approach-inner reveal">
+    <div>
+      <p class="section-label">My Approach</p>
+      <h2 class="section-title">Evidence-based, <em>personally tailored</em></h2>
+    </div>
+    <div>
+      <p>I draw from evidence-based approaches including Cognitive Behavioural Therapy (CBT) and Acceptance and Commitment Therapy (ACT), alongside insights from nervous system research, attachment theory, and developmental psychology. These frameworks provide structure, but the work itself is always tailored to the person in front of me.</p>
+      <p>In practice, this means we're not only looking at what's happening on the surface. We explore the patterns organising your experience — how you relate to yourself, how your nervous system responds to stress, and the beliefs that quietly shape your reactions, decisions, and relationships.</p>
+      <p>The goal isn't perfection or constant self-improvement. It's developing a steadier relationship with yourself so that you can move through life with more clarity, flexibility, and self-trust.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-bg">
+  <div class="bg-inner reveal">
+    <p class="section-label">Professional Background</p>
+    <h2 class="section-title">Training and <em>experience</em></h2>
+    <p>I am a registered psychologist based in Australia. My training began in the United Kingdom and was completed at Bond University on the Gold Coast.</p>
+    <p>Since entering clinical practice in 2021, I have worked with individuals and couples across a range of presentations, including anxiety, relationship difficulties, trauma, burnout, identity transitions, and persistent patterns of self-criticism or over-responsibility.</p>
+    <p>My work integrates approaches such as Cognitive Behavioural Therapy (CBT) and Acceptance and Commitment Therapy (ACT), alongside broader psychological frameworks that consider nervous system regulation, attachment patterns, and core beliefs.</p>
+    <p>I continue to refine my approach through ongoing professional development, clinical supervision, and experience working closely with clients.</p>
+  </div>
+</section>
+
+<section class="personal-note">
+  <div class="note-inner reveal">
+    <p class="section-label">A Personal Note</p>
+    <h2 class="section-title">Why I do <em>this work</em></h2>
+    <p>I've long been curious about people — how we become who we are, and the patterns that shape the way we think, feel, and relate to ourselves and others.</p>
+    <p>Personal experiences deepened my interest in the human psyche and led me toward work that felt meaningful and genuinely of service.</p>
+    <p>What continues to motivate me is seeing how much can change when people begin to understand themselves differently and work with their patterns in new ways. It's work I find endlessly interesting, and something I feel genuinely privileged to be part of.</p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Jenna Duffus — Psychologist</span>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/jennaduffus/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </div>
+  <span class="footer-copy">&copy; 2025 Jenna Duffus. All rights reserved.</span>
+</footer>
+
+<script>
+  const nav=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
+  const toggle=document.getElementById('mobileToggle');
+  const links=document.getElementById('navLinks');
+  toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
+  links.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')})});
+  const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('on');obs.unobserve(entry.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
