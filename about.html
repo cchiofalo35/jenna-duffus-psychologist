@@ -96,13 +96,20 @@
   }
   .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
 
-  /* INTRO */
+  /* INTRO WITH PHOTO */
   .about-intro { background: var(--white); }
-  .about-intro-inner { max-width: 780px; margin: 0 auto; }
-  .about-intro-inner p {
+  .about-intro-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .about-intro-text p {
     font-size: 17px; line-height: 1.9; color: var(--stone); margin-bottom: 20px;
   }
-  .about-intro-inner p:last-of-type { margin-bottom: 0; }
+  .about-intro-text p:last-of-type { margin-bottom: 0; }
+  .about-photo {
+    width: 100%; height: auto; display: block;
+    object-fit: cover;
+  }
   .btn-solid {
     display: inline-block; background: var(--sage); color: var(--white);
     padding: 16px 40px; font-family: 'Lato', sans-serif;
@@ -131,13 +138,16 @@
   }
   .bg-inner p:last-child { margin-bottom: 0; }
 
-  /* PERSONAL NOTE */
+  /* PERSONAL NOTE WITH PHOTO */
   .personal-note { background: var(--white); }
-  .note-inner { max-width: 780px; margin: 0 auto; }
-  .note-inner p {
+  .note-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .note-text p {
     font-size: 16px; line-height: 1.9; color: var(--stone); margin-bottom: 16px;
   }
-  .note-inner p:last-child { margin-bottom: 0; }
+  .note-text p:last-child { margin-bottom: 0; }
 
   /* ── FOOTER ── */
   footer {
@@ -274,7 +284,9 @@
   @media (max-width: 768px) {
     nav, section, footer, .page-header { padding-left: 28px; padding-right: 28px; }
     nav { padding-top: 18px; padding-bottom: 18px; }
+    .about-intro-inner { grid-template-columns: 1fr; gap: 40px; }
     .approach-inner { grid-template-columns: 1fr; gap: 48px; }
+    .note-inner { grid-template-columns: 1fr; gap: 40px; }
     .nav-links { display: none; }
     .mobile-toggle { display: block; }
     body.menu-open { overflow: hidden; }
@@ -319,11 +331,14 @@
 
 <section class="about-intro">
   <div class="about-intro-inner reveal">
-    <p>I'm a registered psychologist working with people who want to understand themselves more clearly and change patterns that no longer serve them.</p>
-    <p>Much of my work centres around anxiety and the many ways it can shape experience — through overthinking, perfectionism, hyper-attunement, self-criticism, people-pleasing, procrastination, recurring relational dynamics, and much more.</p>
-    <p>Over time, these patterns can quietly shape how someone relates to themselves — affecting confidence, self-worth, and the sense of connection they feel to their own thoughts, needs, and direction in life.</p>
-    <p>Therapy, in my view, isn't simply about managing symptoms. It's about understanding the structure beneath them, so change becomes possible at the level where those patterns were formed.</p>
-    <a href="#" class="btn-solid open-contact-form">Get in Touch</a>
+    <div class="about-intro-text">
+      <p>I'm a registered psychologist working with people who want to understand themselves more clearly and change patterns that no longer serve them.</p>
+      <p>Much of my work centres around anxiety and the many ways it can shape experience — through overthinking, perfectionism, hyper-attunement, self-criticism, people-pleasing, procrastination, recurring relational dynamics, and much more.</p>
+      <p>Over time, these patterns can quietly shape how someone relates to themselves — affecting confidence, self-worth, and the sense of connection they feel to their own thoughts, needs, and direction in life.</p>
+      <p>Therapy, in my view, isn't simply about managing symptoms. It's about understanding the structure beneath them, so change becomes possible at the level where those patterns were formed.</p>
+      <a href="#" class="btn-solid open-contact-form">Get in Touch</a>
+    </div>
+    <img src="images/jenna-headshot.jpg" alt="Jenna Duffus - Psychologist" class="about-photo">
   </div>
 </section>
 
@@ -354,11 +369,14 @@
 
 <section class="personal-note">
   <div class="note-inner reveal">
-    <p class="section-label">A Personal Note</p>
-    <h2 class="section-title">Why I do <em>this work</em></h2>
-    <p>I've long been curious about people — how we become who we are, and the patterns that shape the way we think, feel, and relate to ourselves and others.</p>
-    <p>Personal experiences deepened my interest in the human psyche and led me toward work that felt meaningful and genuinely of service.</p>
-    <p>What continues to motivate me is seeing how much can change when people begin to understand themselves differently and work with their patterns in new ways. It's work I find endlessly interesting, and something I feel genuinely privileged to be part of.</p>
+    <img src="images/jenna-casual.jpg" alt="Jenna Duffus at home" class="about-photo">
+    <div class="note-text">
+      <p class="section-label">A Personal Note</p>
+      <h2 class="section-title">Why I do <em>this work</em></h2>
+      <p>I've long been curious about people — how we become who we are, and the patterns that shape the way we think, feel, and relate to ourselves and others.</p>
+      <p>Personal experiences deepened my interest in the human psyche and led me toward work that felt meaningful and genuinely of service.</p>
+      <p>What continues to motivate me is seeing how much can change when people begin to understand themselves differently and work with their patterns in new ways. It's work I find endlessly interesting, and something I feel genuinely privileged to be part of.</p>
+    </div>
   </div>
 </section>
 
