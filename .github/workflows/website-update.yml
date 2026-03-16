@@ -19,6 +19,8 @@ jobs:
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          show_full_output: true
+          allowed_tools: "Bash,Edit,Read,Write,Glob,Grep"
           prompt: |
             A website update has been requested by Jenna (the site owner). Here is her request:
 
