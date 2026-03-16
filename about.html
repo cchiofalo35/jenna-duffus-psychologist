@@ -100,14 +100,14 @@
   .about-intro { background: var(--white); }
   .about-intro-inner {
     max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start;
   }
   .about-intro-text p {
     font-size: 17px; line-height: 1.9; color: var(--stone); margin-bottom: 20px;
   }
   .about-intro-text p:last-of-type { margin-bottom: 0; }
   .about-photo {
-    width: 100%; height: auto; display: block;
+    width: 100%; max-height: 480px; display: block;
     object-fit: cover; border-radius: 18px;
     box-shadow: 0 12px 40px rgba(58,52,48,0.06);
     opacity: 0.92;
@@ -144,7 +144,7 @@
   .personal-note { background: var(--white); }
   .note-inner {
     max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: start;
   }
   .note-text p {
     font-size: 16px; line-height: 1.9; color: var(--stone); margin-bottom: 16px;
