@@ -108,8 +108,9 @@
   .about-intro-text p:last-of-type { margin-bottom: 0; }
   .about-photo {
     width: 100%; height: auto; display: block;
-    object-fit: cover; border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(58,52,48,0.08);
+    object-fit: cover; border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(58,52,48,0.06);
+    opacity: 0.92;
   }
   .btn-solid {
     display: inline-block; background: var(--sage); color: var(--white);
@@ -286,6 +287,7 @@
     nav, section, footer, .page-header { padding-left: 28px; padding-right: 28px; }
     nav { padding-top: 18px; padding-bottom: 18px; }
     .about-intro-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { width: 65%; max-width: 320px; margin: 0 auto; border-radius: 16px; }
     .approach-inner { grid-template-columns: 1fr; gap: 48px; }
     .note-inner { grid-template-columns: 1fr; gap: 40px; }
     .nav-links { display: none; }
