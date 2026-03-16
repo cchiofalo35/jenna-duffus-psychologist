@@ -19,7 +19,6 @@ jobs:
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          show_full_output: true
           claude_args: "--allowedTools Edit,Bash,Write,Read,Grep,Glob"
           prompt: |
             A website update has been requested by Jenna (the site owner). Here is her request:
@@ -30,5 +29,7 @@ jobs:
 
             Please make the requested changes to the website. Follow the guidelines in CLAUDE.md.
             Only change what was specifically requested — do not modify anything else.
-            After making changes, commit them and create a pull request for review.
+            After making changes, commit them directly to the main branch and push.
+            Do NOT create a pull request. Commit and push directly to main.
+            After pushing, close this issue with a comment summarizing what was changed.
             If the request is unclear, add a comment to this issue asking for clarification instead of guessing.
