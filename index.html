@@ -286,6 +286,18 @@
     border-radius: 50%; background: var(--sage-mid);
     margin-top: 8px;
   }
+  .workshop-right-col {
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .workshop-standout {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 300; line-height: 1.4;
+    color: var(--cream); letter-spacing: 0.01em;
+  }
+  .workshop-standout .accent {
+    font-style: italic; color: var(--sage-mid);
+  }
   .workshop-visual {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.06);
@@ -667,7 +679,6 @@
       <h2 class="section-title">Anxiety <em>&amp; Me</em></h2>
       <p class="workshop-desc"><em>A structured audio workshop for understanding and working with anxiety.</em></p>
       <p class="workshop-desc">Designed for people who want to understand what's happening in their system and know what to do when anxiety rises.</p>
-      <p class="workshop-desc">Over time, these skills change how anxiety shows up in your life. You feel steadier, less reactive, and more able to respond to anxiety, rather than being pulled along by it.</p>
       <p class="workshop-desc">Inside the workshop you'll learn how to:</p>
       <ul class="workshop-features">
         <li>Understand how anxiety functions in the body and brain</li>
@@ -679,10 +690,13 @@
         <li>Apply these skills in everyday situations</li>
       </ul>
     </div>
-    <div class="workshop-visual reveal">
-      <div class="workshop-visual-title">Anxiety &amp; Me</div>
-      <p class="workshop-visual-sub">Guided audio modules &amp; practical worksheets you can return to as often as needed.</p>
-      <a href="workshop.html" class="workshop-btn">Explore the Workshop</a>
+    <div class="workshop-right-col reveal">
+      <p class="workshop-standout">Feel steadier, less reactive, and more able to <em class="accent">respond</em> to anxiety, rather than being pulled along by it.</p>
+      <div class="workshop-visual">
+        <div class="workshop-visual-title">Anxiety &amp; Me</div>
+        <p class="workshop-visual-sub">Guided audio modules &amp; practical worksheets you can return to as often as needed.</p>
+        <a href="workshop.html" class="workshop-btn">Explore the Workshop</a>
+      </div>
     </div>
   </div>
 </section>
